@@ -1,0 +1,17 @@
+{
+  "name": "lingyin/wechat",
+  "description": "一个微信公众号项目",
+  "minimum-stability": "dev",
+  "require": {
+    "twinkle/twinkle-api": "dev-master",
+    "yiisoft/yii2": "^2.0",
+    "overtrue/wechat": "~4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7"
+  },
+  "autoload": {
+    "psr-4": {
+    }
+  }
+}
