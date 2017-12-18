@@ -8,9 +8,14 @@
 
 namespace app\modules\wechat\controllers;
 
-use app\base\Controller;
-use Yii;
+use app\modules\wechat\base\Controller;
 
+/**
+ * 菜单
+ *
+ * Class MenuController
+ * @package app\modules\wechat\controllers
+ */
 class MenuController extends Controller
 {
 
@@ -43,8 +48,8 @@ class MenuController extends Controller
                 ],
             ],
         ];
-        $wechat = Yii::$app->wechat->getInstance();
-        $result = $wechat->menu->create($buttons);
+
+        $result = $this->wechat->menu->create($buttons);
         if ($result['errcode'] == 0) {
             return $this->asJson(['code' => 0, '应用成功']);
         } else {
