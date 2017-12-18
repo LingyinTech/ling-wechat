@@ -6,12 +6,12 @@
  * Time: 19:43
  */
 
-namespace app\controllers;
+namespace app\modules\wechat\controllers;
 
 use app\base\Controller;
 use Yii;
 
-class WechatMenuController extends Controller
+class MenuController extends Controller
 {
 
     public function actionApply()
@@ -28,12 +28,12 @@ class WechatMenuController extends Controller
                     [
                         "type" => "view",
                         "name" => "搜索",
-                        "url" => "http://www.soso.com/"
+                        "url" => "https://www.soso.com/"
                     ],
                     [
                         "type" => "view",
-                        "name" => "视频",
-                        "url" => "http://v.qq.com/"
+                        "name" => "电影",
+                        "url" => "https://v.qq.com/"
                     ],
                     [
                         "type" => "click",
@@ -48,7 +48,7 @@ class WechatMenuController extends Controller
         if ($result['errcode'] == 0) {
             return $this->asJson(['code' => 0, '应用成功']);
         } else {
-            return $this->asJson(['code' => 0, '应用失败:'.$result['errmsg']]);
+            return $this->asJson(['code' => 0, '应用失败:' . $result['errmsg']]);
         }
     }
 

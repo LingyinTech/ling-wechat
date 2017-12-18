@@ -7,11 +7,15 @@
  */
 
 $config = [
-    'id' => 'wechat',
+    'id' => 'admin',
     'basePath' => dirname(__DIR__),
     'language' => 'en', //默认语言
     'bootstrap' => ['log'],
     'modules' => [
+        'wechat' => [
+            'basePath' => '@app/modules/wechat',
+            'class' => 'app\modules\wechat\Module',
+        ],
         'wechat-api' => [
             'basePath' => '@app/modules/wechatApi',
             'class' => 'app\modules\wechatApi\Module',
@@ -26,6 +30,7 @@ $config = [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
+                '<module:(wechat|wechat-api|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
                 '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
                 '' => 'site/index'
