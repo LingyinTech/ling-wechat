@@ -6,7 +6,7 @@
  * Time: 20:59
  */
 
-namespace app\models;
+namespace common\models;
 
 
 use common\base\ActiveRecord;
