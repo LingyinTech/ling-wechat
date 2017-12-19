@@ -4,6 +4,8 @@ composer.lock
 backend/runtime/
 frontend/runtime/
 vendor/
+common/config/web.prod.php
+common/config/web.test.php
 backend/config/web.prod.php
 backend/config/web.test.php
 frontend/config/web.prod.php
