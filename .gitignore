@@ -1,7 +1,10 @@
 .idea/
 .svn/
-php/composer.lock
-php/runtime/
-php/vendor/
-php/config/web.prod.php
-php/config/web.test.php
+composer.lock
+backend/runtime/
+frontend/runtime/
+vendor/
+backend/config/web.prod.php
+backend/config/web.test.php
+frontend/config/web.prod.php
+frontend/config/web.test.php
