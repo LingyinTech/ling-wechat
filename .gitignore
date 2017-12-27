@@ -10,3 +10,4 @@ backend/config/web.prod.php
 backend/config/web.test.php
 frontend/config/web.prod.php
 frontend/config/web.test.php
+backend/htdocs/assets/

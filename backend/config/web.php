@@ -9,66 +9,30 @@
 $config = [
     'id' => 'admin',
     'basePath' => dirname(__DIR__),
-    'language' => 'en', //默认语言
-    'bootstrap' => ['log'],
+    'controllerNamespace' => 'backend\controllers',
     'modules' => [
         'wechat' => [
-            'basePath' => '@app/modules/wechat',
-            'class' => 'app\modules\wechat\Module',
-        ],
-        'wechat-api' => [
-            'basePath' => '@app/modules/wechatApi',
-            'class' => 'app\modules\wechatApi\Module',
+            'basePath' => '@backend/modules/wechat',
+            'class' => 'backend\modules\wechat\Module',
         ],
     ],
     'components' => [
-        'request' => [
-            'cookieValidationKey' => '9nfRpkQ9RZYk8TzAVMsVeThqLePM9HdR',
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+        ],
+        'assetManager' => [
+            'basePath' => __DIR__ . '/../htdocs/assets',
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => false,
-            'showScriptName' => false,
             'rules' => [
-                '<module:(wechat|wechat-api|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
+                '<module:(wechat|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
                 '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
-                '' => 'site/index'
             ],
         ],
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'charset' => 'utf8',
-            'enableSchemaCache' => YII_ENV_PROD,
-            'schemaCacheDuration' => 3600,
-            'schemaCache' => 'cache',
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning','trace'],
-                ],
-            ],
-        ],
-        'i18n' => [
-            'translations' => [
-                '*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                ],
-            ],
-        ],
-        'ip' => [
-            'class' => 'app\components\Ip',
-        ],
-        'wechat' => [
-            'class' => 'app\components\Wechat',
-        ]
     ],
-    'params' => [
-        'passToken' => 'dda0cf5854f6b403123b27775531ee89'
-    ]
 ];
 
 if (is_file($file = __DIR__ . '/web.' . YII_ENV . '.php')) {

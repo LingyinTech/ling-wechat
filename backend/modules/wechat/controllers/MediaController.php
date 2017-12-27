@@ -6,9 +6,9 @@
  * Time: 22:13
  */
 
-namespace app\modules\wechat\controllers;
+namespace backend\modules\wechat\controllers;
 
-use app\modules\wechat\base\Controller;
+use backend\modules\wechat\base\Controller;
 
 /**
  * 临时素材管理

@@ -6,11 +6,11 @@
  * Time: 22:17
  */
 
-namespace app\modules\wechat\base;
+namespace backend\modules\wechat\base;
 
 use Yii;
 
-class Controller extends \app\base\Controller
+class Controller extends \common\base\Controller
 {
 
     protected $wechat;

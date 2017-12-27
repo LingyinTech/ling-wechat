@@ -5,7 +5,9 @@
   "require": {
     "twinkle/twinkle-api": "dev-master",
     "yiisoft/yii2": "^2.0",
-    "overtrue/wechat": "~4.0"
+    "overtrue/wechat": "~4.0",
+    "dmstr/yii2-adminlte-asset": "^2.0@dev",
+    "mdmsoft/yii2-admin": "^2.0@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "5.7"

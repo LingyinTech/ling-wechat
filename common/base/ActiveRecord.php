@@ -150,6 +150,15 @@ class ActiveRecord extends \yii\db\ActiveRecord
                         $obj->andWhere([$key, $k, $v]);
                     }
                     break;
+                case 'like':
+                    foreach ($value as $k => $v) {
+                        if (is_string($v) && strpos($v, '%') !== false) {
+                            $obj->andWhere([$key, $k, $v, false]);
+                        } else {
+                            $obj->andWhere([$key, $k, $v]);
+                        }
+                    }
+                    break;
                 case 'orderBy':
                     $obj->orderBy($value);
                     break;

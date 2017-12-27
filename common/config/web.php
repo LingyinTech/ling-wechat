@@ -7,16 +7,12 @@
  */
 
 $config = [
-    'id' => 'admin',
-    'basePath' => dirname(__DIR__),
-    'language' => 'en', //默认语言
+    'language' => 'zh-CN', //默认语言
     'bootstrap' => ['log'],
-    'modules' => [
-        'wechat' => [
-            'basePath' => '@app/modules/wechat',
-            'class' => 'app\modules\wechat\Module',
-        ],
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
     ],
+    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'request' => [
             'cookieValidationKey' => '9nfRpkQ9RZYk8TzAVMsVeThqLePM9HdR',
@@ -25,14 +21,15 @@ $config = [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
-            'rules' => [
-                '<module:(wechat|wechat-api|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
-                '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
-                '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
-                '' => 'site/index'
-            ],
         ],
         'db' => [
+            'class' => 'yii\db\Connection',
+            'charset' => 'utf8',
+            'enableSchemaCache' => YII_ENV_PROD,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
+        'helloBabyDb' => [
             'class' => 'yii\db\Connection',
             'charset' => 'utf8',
             'enableSchemaCache' => YII_ENV_PROD,
@@ -60,11 +57,14 @@ $config = [
         ],
         'wechat' => [
             'class' => 'common\components\Wechat',
+        ],
+        'miniWechat' => [
+            'class' => 'common\components\Wechat',
         ]
     ],
     'params' => [
-        'passToken' => 'dda0cf5854f6b403123b27775531ee89'
-    ]
+        'miniAppAccountToken' => '5243046bacae87473c213a43331f9088',
+    ],
 ];
 
 if (is_file($file = __DIR__ . '/web.' . YII_ENV . '.php')) {

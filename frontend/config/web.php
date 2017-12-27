@@ -7,35 +7,29 @@
  */
 
 $config = [
-    'id' => 'admin',
+    'id' => 'ling-wechat',
     'basePath' => dirname(__DIR__),
-    'language' => 'en', //默认语言
-    'bootstrap' => ['log'],
+    'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'wechat-api' => [
             'basePath' => '@frontend/modules/wechatApi',
             'class' => 'frontend\modules\wechatApi\Module',
         ],
+        'hello-baby' => [
+            'basePath' => '@frontend/modules/helloBaby',
+            'class' => 'frontend\modules\helloBaby\Module',
+        ],
     ],
     'components' => [
-        'request' => [
-            'cookieValidationKey' => '9nfRpkQ9RZYk8TzAVMsVeThqLePM9HdR',
-        ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => false,
-            'showScriptName' => false,
             'rules' => [
-                '<module:(wechat|wechat-api|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
+                '<module:(wechat-api|hello-baby)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
                 '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
                 '' => 'site/index'
             ],
-        ]
+        ],
     ],
-    'params' => [
-        'passToken' => 'dda0cf5854f6b403123b27775531ee89'
-    ]
 ];
 
 if (is_file($file = __DIR__ . '/web.' . YII_ENV . '.php')) {

@@ -6,15 +6,15 @@
  * Time: 22:27
  */
 
-namespace app\modules\wechat\controllers;
+namespace backend\modules\wechat\controllers;
 
-use app\modules\wechat\base\Controller;
+use backend\modules\wechat\base\Controller;
 
 /**
  * 用户管理
  *
  * Class UserController
- * @package app\modules\wechat\controllers
+ * @package backend\modules\wechat\controllers
  */
 class UserController extends Controller
 {

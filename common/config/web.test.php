@@ -13,11 +13,21 @@ return [
             'username' => 'db_twinkle',
             'password' => 'Twinkle2017',
         ],
+        'helloBabyDb' => [
+            'dsn' => 'mysql:host=127.0.0.1;dbname=db_hello_baby',
+            'username' => 'db_twinkle',
+            'password' => 'Twinkle2017',
+        ],
         'wechat' => [
             'appId' => 'wx2b8adaf93335685a',
             'secret' => 'ad9ef0b8cdc0cabcc7214b0f7b771fb4',
             'token' => 'lingyin99',
             'aesKey' => '',
+        ],
+        'miniWechat' => [
+            'type' => 'miniProgram',
+            'appId' => 'wxe4f5e0a70d253f50',
+            'secret' => '349c7650bf3550441db8be632ecabcf4',
         ]
     ]
 ];

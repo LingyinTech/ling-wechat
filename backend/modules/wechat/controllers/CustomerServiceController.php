@@ -6,15 +6,15 @@
  * Time: 22:33
  */
 
-namespace app\modules\wechat\controllers;
+namespace backend\modules\wechat\controllers;
 
-use app\modules\wechat\base\Controller;
+use backend\modules\wechat\base\Controller;
 
 /**
  * 客服
  *
  * Class CustomerServiceController
- * @package app\modules\wechat\controllers
+ * @package backend\modules\wechat\controllers
  */
 class CustomerServiceController extends Controller
 {
