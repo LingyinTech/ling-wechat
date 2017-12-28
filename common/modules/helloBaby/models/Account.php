@@ -17,6 +17,7 @@ use common\base\helloBaby\ActiveRecord;
  *
  * @property int $id  账户ID
  * @property string $api_token 账户Token
+ * @property int $last_event_time 最后记录时间
  */
 class Account extends ActiveRecord
 {

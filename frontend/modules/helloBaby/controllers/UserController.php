@@ -22,7 +22,7 @@ class UserController extends Controller
             return $this->fail($result['errmsg']);
         }
 
-        $result['api_token'] = (new UserInfo())->checkLogin($result['openid']);
+        list($result['api_token'],$result['last_event_time']) = (new UserInfo())->checkLogin($result['openid']);
 
         return $this->format($result);
     }

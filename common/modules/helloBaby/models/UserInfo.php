@@ -48,7 +48,7 @@ class UserInfo extends ActiveRecord
                     return false;
                 }
                 $trans->commit();
-                return $account->api_token;
+                return [$account->api_token,$account->last_event_time];
             } catch (Exception $e) {
                 print_r($e);
                 $trans->rollBack();
@@ -57,10 +57,10 @@ class UserInfo extends ActiveRecord
             $user->update_time = $nowTime;
             if ($user->save()) {
                 $account = Account::findOne(['id' => $user->account_id]);
-                return $account->api_token;
+                return [$account->api_token,$account->last_event_time];
             }
         }
-        return false;
+        return ['',0];
     }
 
 }

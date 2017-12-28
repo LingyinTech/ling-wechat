@@ -56,7 +56,7 @@ class EventController extends Controller
                 $model->update_time = $nowTime;
                 $result = $model->save();
             }
-            return $this->format($result);
+            return $this->format(['status'=> $result ? 0 : 1,'last_event_time' => $nowTime]);
         }
 
         $api_token = Yii::$app->request->get('api_token');

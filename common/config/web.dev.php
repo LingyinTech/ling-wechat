@@ -27,7 +27,7 @@ return [
         'miniWechat' => [
             'type' => 'miniProgram',
             'appId' => 'wxe4f5e0a70d253f50',
-            'secret' => 'ad9ef0b8cdc0cabcc7214b0f7b771fb4',
+            'secret' => '349c7650bf3550441db8be632ecabcf4',
         ]
     ]
 ];

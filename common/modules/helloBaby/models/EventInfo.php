@@ -15,6 +15,7 @@ use common\base\helloBaby\ActiveRecord;
  * Class EventInfo
  * @package common\modules\helloBaby\models
  *
+ * @property int $account_id 账户ID
  * @property int $status 事情状态
  * @property int $update_time 更新时间
  */
@@ -70,6 +71,16 @@ class EventInfo extends ActiveRecord
             }
         }
         return $result;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!empty($this->account_id) && $accountModel = Account::findOne($this->account_id)) {
+            $accountModel->last_event_time = $this->update_time;
+            $accountModel->save(false);
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 
 }
