@@ -3,6 +3,7 @@
 composer.lock
 backend/runtime/
 frontend/runtime/
+console/runtime/
 vendor/
 common/config/web.prod.php
 common/config/web.test.php

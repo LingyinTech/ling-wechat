@@ -7,10 +7,12 @@
     "yiisoft/yii2": "^2.0",
     "overtrue/wechat": "~4.0",
     "dmstr/yii2-adminlte-asset": "^2.0@dev",
-    "mdmsoft/yii2-admin": "^2.0@dev"
+    "mdmsoft/yii2-admin": "^2.0@dev",
+    "yiisoft/yii2-redis": "^2.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "5.7"
+    "phpunit/phpunit": "5.7",
+    "eaglewu/swoole-ide-helper": "dev-master"
   },
   "autoload": {
     "psr-4": {

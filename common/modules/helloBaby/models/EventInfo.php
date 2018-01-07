@@ -22,30 +22,114 @@ use common\base\helloBaby\ActiveRecord;
 class EventInfo extends ActiveRecord
 {
 
-    public function getOneMonthEventList($params)
+    public function getOneMonthEventList($month, $accountId)
     {
         $result = [];
-
-        if (empty($params['date']) && empty($params['account_id'])) {
+        if (empty($month) || empty($accountId)) {
             return $result;
         }
-
+        $params = ['like' => ['date' => "$month%"], 'account_id' => $accountId];
         $list = $this->getList($params);
-        if (empty($list)) {
-            return $result;
-        }
+
+        $firstDay = intval($month . '01');
+        $dayLength = date('t', strtotime("{$month}10")) - 1;
         foreach ($list as $item) {
             $day = substr($item['date'], 6, 2);
             $day = intval($day) - 1;
+
             if ($item['event_type'] == 1) {
                 $result[$day]['make_love'] = $item['status'];
             } elseif ($item['event_type'] == 2) {
                 $result[$day]['menstruation'] = $item['status'];
             } elseif ($item['event_type'] == 3) {
+                $result[$day]['menstruation_off'] = $item['status'];
+            } elseif ($item['event_type'] == 10) {
                 $result[$day]['pregnant'] = $item['status'];
             }
         }
+
+        // 上个月月经开始，没有结束
+        if ($maxLastMsDate = $this->getMaxLastMsDate($month, $accountId)) {
+            if (($maxLastMsOffDate = $this->getMaxLastMsOffDate($month, $accountId)) === false || $maxLastMsOffDate < $maxLastMsDate) {
+                if (($minInMaxOffDate = $this->getMinInOffDate($month, $accountId)) === false) {
+                    $minInMaxOffDate = date('Ymd', strtotime("$maxLastMsDate +6 day"));
+                }
+                if ($minInMaxOffDate >= $firstDay) {
+                    $index = intval(substr($minInMaxOffDate, 6, 2)) - 1;
+                    for ($i = 0; $i <= $index; $i++) {
+                        $result[$i]['menstruation'] = 2; // 月经过程
+                    }
+                }
+            }
+        }
+
+        // 当月经期情况
+        $menstruation = [];
+        $menstruationOff = [];
+        foreach ($result as $key => $item) {
+            if (isset($item['menstruation']) && $item['menstruation'] == 1) {
+                $menstruation[] = $key;
+            }
+            if (isset($item['menstruation_off']) && $item['menstruation_off'] == 1) {
+                $menstruationOff[] = $key;
+            }
+        }
+        foreach ($menstruation as $index) {
+            do {
+                $endIndex = array_shift($menstruationOff);
+            } while ($endIndex <> null && $endIndex < $index);
+            $startIndex = $index + 1;
+            empty($endIndex) && $endIndex = $index + 7;
+            for ($i = $startIndex; $i < $endIndex && $i <= $dayLength; $i++) {
+                $result[$i]['menstruation'] = 2;
+            }
+        }
+
         return $result;
+    }
+
+    public function getMinInOffDate($month, $accountId)
+    {
+        $params = [
+            'select' => 'min(`date`) as date',
+            'account_id' => $accountId,
+            '>=' => ['date' => "{$month}01"],
+            'event_type' => 3,
+        ];
+        if ($data = $this->getOne($params)) {
+            return empty($data['date']) ? false : $data['date'];
+        }
+        return false;
+    }
+
+    public function getMaxLastMsDate($month, $accountId)
+    {
+        $params = [
+            'select' => 'MAX(`date`) as date',
+            'account_id' => $accountId,
+            '<' => ['date' => "{$month}01"],
+            'event_type' => 2,
+            'status' => 1
+        ];
+        if ($data = $this->getOne($params)) {
+            return empty($data['date']) ? false : $data['date'];
+        }
+        return false;
+    }
+
+    public function getMaxLastMsOffDate($month, $accountId)
+    {
+        $params = [
+            'select' => 'MAX(`date`) as date',
+            'account_id' => $accountId,
+            '<' => ['date' => "{$month}01"],
+            'event_type' => 3,
+            'status' => 1
+        ];
+        if ($data = $this->getOne($params)) {
+            return empty($data['date']) ? false : $data['date'];
+        }
+        return false;
     }
 
     public function getOneDayEventList($params)

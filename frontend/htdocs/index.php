@@ -12,10 +12,16 @@ require __DIR__ . '/../../common/config/bootstrap.php';
 require __DIR__ . '/../config/bootstrap.php';
 
 $config = yii\helpers\ArrayHelper::merge(
+    require __DIR__ . '/../../common/config/main.php',
     require __DIR__ . '/../../common/config/web.php',
     require __DIR__ . '/../config/web.php'
 );
 
-Yii::$classMap['app\base\Application'] = __DIR__ . '/../base/Application.php';
-
 (new \common\base\Application($config))->run();
+
+/**
+ * @return \common\base\Application $app
+ */
+function app(){
+    return Yii::$app;
+}

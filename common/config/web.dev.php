@@ -18,6 +18,14 @@ return [
             'username' => 'db_twinkle',
             'password' => 'Twinkle2017',
         ],
+        'cache' => [
+            'redis' => [
+                'hostname' => 'local.redis.test',
+                'port' => 6380,
+                'password' => 'profileLogStash',
+                'database' => 4,
+            ]
+        ],
         'wechat' => [
             'appId' => 'wx2b8adaf93335685a',
             'secret' => 'ad9ef0b8cdc0cabcc7214b0f7b771fb4',

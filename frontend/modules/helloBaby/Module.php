@@ -8,7 +8,7 @@ namespace frontend\modules\helloBaby;
  * Class Module
  * @package frontend\modules\helloBaby
  */
-class Module extends \yii\base\Module
+class Module extends \common\base\Module
 {
     public $controllerNamespace = 'frontend\modules\helloBaby\controllers';
 

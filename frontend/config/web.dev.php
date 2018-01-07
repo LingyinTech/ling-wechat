@@ -7,6 +7,11 @@
  */
 
 return [
+    'modules' => [
+        'hello-baby' => [
+            'domain' => 'wechat.lingyin99.com',
+        ],
+    ],
     'components' => [
 
     ]

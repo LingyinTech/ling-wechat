@@ -23,7 +23,7 @@ class EventController extends Controller
         }
 
         $month = Yii::$app->request->get('month');
-        $list = (new EventInfo())->getOneMonthEventList(['like' => ['date' => "$month%"], 'account_id' => $account->id]);
+        $list = (new EventInfo())->getOneMonthEventList($month,$account->id);
 
         return $this->format(['list' =>$list]);
     }
