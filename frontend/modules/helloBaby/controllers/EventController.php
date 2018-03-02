@@ -10,7 +10,7 @@ namespace frontend\modules\helloBaby\controllers;
 
 use common\modules\helloBaby\models\Account;
 use common\modules\helloBaby\models\EventInfo;
-use frontend\modules\helloBaby\base\Controller;
+use common\base\api\Controller;
 use Yii;
 
 class EventController extends Controller

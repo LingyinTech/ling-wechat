@@ -19,11 +19,15 @@ $config = [
             'basePath' => '@frontend/modules/helloBaby',
             'class' => 'frontend\modules\helloBaby\Module',
         ],
+        'digital-coin' => [
+            'basePath' => '@frontend/modules/digitalCoin',
+            'class' => 'frontend\modules\digitalCoin\Module',
+        ],
     ],
     'components' => [
         'urlManager' => [
             'rules' => [
-                '<module:(wechat-api|hello-baby)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
+                '<module:(wechat-api|hello-baby|digital-coin)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
                 '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
                 '' => 'site/index'

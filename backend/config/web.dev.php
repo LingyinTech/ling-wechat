@@ -7,7 +7,18 @@
  */
 
 return [
+    'bootstrap' => ['debug'],
+    'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => ['*']
+        ]
+    ],
     'components' => [
-
+        'baseDb' => [
+            'dsn' => 'mysql:host=local.test.mysql;dbname=db_lingyin_base',
+            'username' => 'db_twinkle',
+            'password' => 'Twinkle2017',
+        ],
     ]
 ];

@@ -33,6 +33,13 @@ $config = [
             'schemaCacheDuration' => 3600,
             'schemaCache' => 'cache',
         ],
+        'digitalCoinDb' => [
+            'class' => 'yii\db\Connection',
+            'charset' => 'utf8',
+            'enableSchemaCache' => YII_ENV_PROD,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
         'cache' => [
             'class' => 'yii\redis\Cache',
             'keyPrefix' => 'lingyin-common:',

@@ -11,6 +11,7 @@
     "yiisoft/yii2-redis": "^2.0"
   },
   "require-dev": {
+    "yiisoft/yii2-debug": "~2.0.0",
     "phpunit/phpunit": "5.7",
     "eaglewu/swoole-ide-helper": "dev-master"
   },
