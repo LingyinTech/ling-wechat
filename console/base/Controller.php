@@ -12,4 +12,19 @@ namespace console\base;
 class Controller extends \yii\console\Controller
 {
 
+    protected function start()
+    {
+
+    }
+
+    protected function stop()
+    {
+
+    }
+
+    protected function reStart()
+    {
+
+    }
+
 }
