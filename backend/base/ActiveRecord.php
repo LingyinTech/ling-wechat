@@ -6,7 +6,7 @@
  * Time: 15:46
  */
 
-namespace backend\modules\rbac\base;
+namespace backend\base;
 
 class ActiveRecord extends \common\base\ActiveRecord
 {

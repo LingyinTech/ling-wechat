@@ -75,8 +75,4 @@ $config = [
     ],
 ];
 
-if (is_file($file = __DIR__ . '/web.' . YII_ENV . '.php')) {
-    $config = yii\helpers\ArrayHelper::merge($config, require($file));
-}
-
 return $config;

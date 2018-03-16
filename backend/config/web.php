@@ -21,11 +21,18 @@ $config = [
             'basePath' => '@backend/modules/wechat',
             'class' => 'backend\modules\wechat\Module',
         ],
+        'wechat-work' =>[
+            'basePath' => '@backend/modules/wechat-work',
+            'class' => 'backend\modules\wechat-work\Module',
+        ]
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            '*'
+            'user/login',
+            'user/register',
+            'debug/*',
+            'admin/*'
         ]
     ],
     'components' => [
@@ -37,9 +44,10 @@ $config = [
             'schemaCache' => 'cache',
         ],
         'user' => [
-            'identityClass' => 'backend\modules\rbac\models\Admin',
+            'identityClass' => 'backend\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'loginUrl' => ['user/login']
         ],
         'authManager' => [
             'db' => 'baseDb',
@@ -51,7 +59,7 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
-                '<module:(wechat|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
+                '<module:(admin|wechat|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<controller>/<action>',
                 '<controller:[\w-]+><nouse:(.*)>' => '<controller>/index',
             ],
@@ -60,6 +68,7 @@ $config = [
     'params' => [
         'mdm.admin.configs' => [
             'db' => 'baseDb',
+            'userDb' => 'baseDb',
         ]
     ]
 ];
