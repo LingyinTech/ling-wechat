@@ -14,6 +14,11 @@ return [
             'allowedIPs' => ['*']
         ]
     ],
+    'as access' => [
+        'allowActions' => [
+            'debug/*',
+        ]
+    ],
     'components' => [
         'baseDb' => [
             'dsn' => 'mysql:host=local.test.mysql;dbname=db_lingyin_base',

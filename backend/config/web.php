@@ -31,8 +31,7 @@ $config = [
         'allowActions' => [
             'user/login',
             'user/register',
-            'debug/*',
-            'admin/*'
+            'site/error',
         ]
     ],
     'components' => [
