@@ -27,7 +27,7 @@ $config = [
         ]
     ],
     'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
+        'class' => 'mdm\admin\classes\AccessControl',
         'allowActions' => [
             'user/login',
             'user/register',

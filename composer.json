@@ -1,23 +1,23 @@
 {
   "name": "lingyin/wechat",
   "description": "一个微信公众号项目",
-  "minimum-stability": "dev",
   "require": {
-    "twinkle/twinkle-api": "dev-master",
-    "yiisoft/yii2": "^2.0",
-    "overtrue/wechat": "~4.0",
-    "dmstr/yii2-adminlte-asset": "^2.0@dev",
-    "mdmsoft/yii2-admin": "^2.0@dev",
-    "yiisoft/yii2-redis": "^2.0",
-    "yiisoft/yii2-swiftmailer": "^2.1"
+    "twinkle/twinkle-api": "^0.0.1",
+    "picqer/php-barcode-generator": "^0.2.2",
+    "overtrue/wechat": "^4.0",
+    "yiisoft/yii2": "^2.0.15",
+    "mdmsoft/yii2-admin": "^3.2",
+    "dmstr/yii2-adminlte-asset": "^2.6",
+    "lingyin/predis": "dev-master"
   },
   "require-dev": {
-    "yiisoft/yii2-debug": "~2.0.0",
-    "phpunit/phpunit": "5.7",
-    "eaglewu/swoole-ide-helper": "dev-master"
+    "phpunit/phpunit": "^7.0",
+    "eaglewu/swoole-ide-helper": "dev-master",
+    "yiisoft/yii2-debug": "~2.0.0"
   },
   "autoload": {
     "psr-4": {
+      "lingyin\\predis\\": "vendor/lingyin/predis/"
     }
   }
 }

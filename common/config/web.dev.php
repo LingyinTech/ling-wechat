@@ -25,10 +25,20 @@ return [
         ],
         'cache' => [
             'redis' => [
-                'hostname' => 'local.test.redis',
-                'port' => 6380,
-                'password' => 'profileLogStash',
-                'database' => 4,
+                'parameters' => [
+                    [
+                        'host' => 'local.test.redis',
+                        'port' => 6380,
+                    ],
+                ],
+                'options' => [
+                    //'replication' => 'sentinel',
+                    //'service' => $this->_options['master_name'],
+                    'parameters' => [
+                        'password' => 'profileLogStash',
+                        'database' => 4,
+                    ]
+                ],
             ]
         ],
         'wechat' => [

@@ -41,7 +41,7 @@ $config = [
             'schemaCache' => 'cache',
         ],
         'cache' => [
-            'class' => 'yii\redis\Cache',
+            'class' => \lingyin\predis\Cache::class,
             'keyPrefix' => 'lingyin-common:',
         ],
         'log' => [

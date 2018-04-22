@@ -17,6 +17,11 @@ class UserController extends Controller
 
     public function actionLogin()
     {
+        \Yii::$app->cache->add('adb',333,60);
+        var_dump(\Yii::$app->cache->get('adb'));
+
+        return 111;
+
         if (!app()->user->isGuest) {
             return $this->goHome();
         }
