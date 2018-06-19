@@ -7,13 +7,16 @@
  */
 
 namespace backend\base;
+use backend\models\User;
+use yii\db\Connection;
 
 
 /**
  * Class Application
  * @package backend\base
  *
- * @property \yii\db\Connection $baseDb The database connection. This property is read-only.
+ * @property Connection $baseDb The database connection. This property is read-only.
+ * @property Connection $orderFlowDb The database connection. This property is read-only.
  */
 class Application extends \common\base\Application
 {

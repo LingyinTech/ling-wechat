@@ -6,9 +6,12 @@
     "picqer/php-barcode-generator": "^0.2.2",
     "overtrue/wechat": "^4.0",
     "yiisoft/yii2": "^2.0.15",
-    "mdmsoft/yii2-admin": "^3.2",
     "dmstr/yii2-adminlte-asset": "^2.6",
-    "lingyin/predis": "dev-master"
+    "lingyin/predis": "~0.0.1",
+    "mdmsoft/yii2-admin": "~2.0",
+    "yiisoft/yii2-swiftmailer": "^2.1",
+    "kucha/ueditor": "^1.21",
+    "upyun/sdk": "^3.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.0",

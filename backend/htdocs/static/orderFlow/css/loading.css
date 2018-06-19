@@ -1,0 +1,39 @@
+@charset "utf-8";
+.loading-indicator {
+	height:44px;
+	line-height:44px;
+	text-align:left;
+	z-index:999999999999;
+	font-family:"微软雅黑";
+	margin-left:100px;
+	font-size:14px;
+	color:#333;
+}
+ 
+#loading{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:99999999999;
+	background:transparent;
+}
+
+.loading-con{
+	width:206px;
+	height:44px;
+	position:absolute;
+	top:150px;
+	left:0;
+	right:0;
+	margin:auto;
+	border:2px solid #64cbff;
+	border-radius:22px;
+	background-color:rgba(255,255,255,.8);
+	background-image:url(../images/loadAnimate.gif);
+	background-repeat:no-repeat;
+	background-position:10px center;
+	text-align:center;
+}
+

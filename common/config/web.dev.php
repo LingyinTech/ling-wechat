@@ -51,6 +51,14 @@ return [
             'type' => 'miniProgram',
             'appId' => 'wxe4f5e0a70d253f50',
             'secret' => '349c7650bf3550441db8be632ecabcf4',
+        ],
+        'imageUpload' => [
+            'serviceName' => 'image-lingyin99',
+            'operatorName' => 'actors315',
+            'operatorPwd' => 'Lingyin99',
+            'apiKey' => 'NfO/8EZtfT/WxK8iTLr2QYNjxpY=',
+            'preFixPath' => 'lingyin-wechat',
+            'baseUrl' => 'https://image-lingyin99.test.upcdn.net'
         ]
     ]
 ];

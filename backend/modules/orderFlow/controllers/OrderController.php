@@ -1,0 +1,85 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: huanjin
+ * Date: 2018/4/23
+ * Time: 22:33
+ */
+
+namespace backend\modules\orderFlow\controllers;
+
+
+use backend\modules\orderFlow\models\form\OrderInfoForm;
+use backend\modules\orderFlow\models\OrderInfo;
+use common\base\Controller;
+
+class OrderController extends Controller
+{
+
+    public function actionCreate()
+    {
+        $id = app()->request->get('id');
+        if (!empty($id)) {
+            $model = OrderInfo::findOne($id);
+        }
+        empty($model) && $model = new OrderInfo();
+
+        if (app()->request->isPost) {
+
+            if (($result = $model->saveOrder()) !== true) {
+                if (is_string($result)) {
+                    return $this->fail('保存失败' . $result);
+                }
+                return $this->format(['status' => 1, 'msg' => '保存失败', 'data' => $result]);
+            }
+
+            return $this->success('保存成功');
+        }
+
+        $modelForm = new OrderInfoForm();
+        $csrf = app()->request->getCsrfToken();
+
+        if (!empty($model)) {
+            $modelForm->loadData($model);
+            $model->order_time = $modelForm->order_time;
+            $model->plan_time = $modelForm->plan_time;
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'modelForm' => $modelForm,
+            '_csrf' => $csrf,
+        ]);
+    }
+
+
+    public function actionIndex()
+    {
+        $orderState = app()->request->get('order_state');
+
+        $params = [];
+        if ($orderState !== null) {
+            $params['order_state'] = $orderState;
+        }
+
+        $keyword = app()->request->get('keyword');
+        if (!empty($keyword)) {
+            $params['like'] = [
+                'order_sn' => $keyword
+            ];
+        }
+
+
+        $filter = [
+            'keyword' => $keyword,
+        ];
+
+        $list = (new OrderInfo())->getList($params);
+
+        return $this->render('index', [
+            'list' => $list,
+            'filter' => $filter,
+        ]);
+    }
+
+}

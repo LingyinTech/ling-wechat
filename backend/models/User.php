@@ -23,4 +23,9 @@ class User extends \mdm\admin\models\User
         return false;
     }
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
 }

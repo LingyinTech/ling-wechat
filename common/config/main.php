@@ -68,7 +68,11 @@ $config = [
         ],
         'miniWechat' => [
             'class' => 'common\components\Wechat',
-        ]
+        ],
+        'imageUpload' => [
+            'class' => \common\components\upyun\Upload::class,
+        ],
+        'barCode' => \common\components\BarCode::class,
     ],
     'params' => [
         'miniAppAccountToken' => '5243046bacae87473c213a43331f9088',

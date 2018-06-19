@@ -40,7 +40,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
      *
      * @return array
      */
-    public function fromUserAttributes()
+    public function filterInputAttributes()
     {
         return $this->attributes();
     }

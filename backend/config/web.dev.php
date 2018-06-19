@@ -25,5 +25,10 @@ return [
             'username' => 'db_twinkle',
             'password' => 'Twinkle2017',
         ],
+        'orderFlowDb' => [
+            'dsn' => 'mysql:host=local.test.mysql;dbname=db_order_flow',
+            'username' => 'db_twinkle',
+            'password' => 'Twinkle2017',
+        ],
     ]
 ];
