@@ -19,9 +19,23 @@ use yii\db\Exception;
  * @property int $order_time 下单时间
  * @property int $plan_time 安排时间
  * @property string $order_sn
+ * @property int is_delete 是否删除
  */
 class OrderInfo extends ActiveRecord
 {
+
+    /**
+     * 所有订单
+     * 默认查询未删除订单
+     *
+     * @param array $params
+     * @return array|false
+     */
+    public function getList($params = [])
+    {
+        !isset($params['is_delete']) && $params['is_delete'] = 0;
+        return parent::getList($params);
+    }
 
     public function saveOrder()
     {

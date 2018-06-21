@@ -16,6 +16,24 @@ use common\base\Controller;
 class OrderController extends Controller
 {
 
+    public function actionDelete()
+    {
+        $params['id'] = app()->request->get('id');
+        if (empty($params['id'])) {
+            return $this->fail('参数错误');
+        }
+        $params['is_delete'] = 0;
+        if (!($orderInfo = OrderInfo::findOne($params))) {
+            return $this->fail('订单不存在或无权限');
+        }
+        $orderInfo->is_delete = 1;
+        if ($orderInfo->save(false)) {
+            return $this->success('删除成功');
+        }
+
+        return $this->fail('删除失败');
+    }
+
     public function actionCreate()
     {
         $id = app()->request->get('id');
@@ -51,7 +69,6 @@ class OrderController extends Controller
             '_csrf' => $csrf,
         ]);
     }
-
 
     public function actionIndex()
     {

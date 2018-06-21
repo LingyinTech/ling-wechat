@@ -34,13 +34,15 @@ use yii\helpers\Url;
             <?php if (!empty($list)): ?>
                 <?php foreach ($list as $item): ?>
                     <tr>
-                        <td colspan="3"><?= $item['order_sn'] ?></td>
-                        <td colspan="5"><?= $item['order_name'] ?></td>
-                        <td colspan="4"><?= $item['consignee_name'] ?> - <?= $item['consignee_phone'] ?></td>
-                        <td colspan="3"><?= date('Y-m-d H:i:s', $item['up_time']); ?></td>
+                        <td colspan="3"><?=$item['order_sn']?></td>
+                        <td colspan="5"><?=$item['order_name']?></td>
+                        <td colspan="4"><?=$item['consignee_name']?> - <?=$item['consignee_phone']?></td>
+                        <td colspan="3"><?=date('Y-m-d H:i:s',$item['up_time']);?></td>
                         <td colspan="3">
-                            <a href="<?= Url::toRoute(['/order-flow/order/create', 'id' => $item['id']]) ?>">编辑</a>
+                            <a href="<?=Url::toRoute(['/order-flow/order/create','id' => $item['id']])?>">编辑</a>
+
                             <a class="delete" data-href="<?= Url::toRoute(['/order-flow/order/delete', 'id' => $item['id']]) ?>">删除</a>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
