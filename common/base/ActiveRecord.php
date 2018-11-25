@@ -61,11 +61,12 @@ class ActiveRecord extends \yii\db\ActiveRecord
      * 查询列表
      *
      * @param array $params
+     * @param array | string $fields
      * @return array | false
      */
-    public function getList($params = [])
+    public function getList($params = [], $fields = '*')
     {
-        return $this->setWhere($params)->asArray()->all();
+        return $this->setWhere($params)->select($fields)->asArray()->all();
     }
 
     /**
@@ -106,6 +107,11 @@ class ActiveRecord extends \yii\db\ActiveRecord
             }
             $result = $model->save();
         }
+
+        if (method_exists($this, 'deleteCache')) {
+            $this->deleteCache();
+        }
+
         return $result;
     }
 

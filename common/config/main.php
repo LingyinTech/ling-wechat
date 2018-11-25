@@ -69,6 +69,9 @@ $config = [
         'miniWechat' => [
             'class' => 'common\components\Wechat',
         ],
+        'reminder' => [
+            'class' => 'common\components\Wechat',
+        ],
         'imageUpload' => [
             'class' => \common\components\upyun\Upload::class,
         ],

@@ -8,14 +8,12 @@
 
 namespace common\base\helloBaby;
 
-use Yii;
-
 class ActiveRecord extends \common\base\ActiveRecord
 {
 
     public static function getDb()
     {
-        return Yii::$app->helloBabyDb;
+        return app()->helloBabyDb;
     }
 
 }

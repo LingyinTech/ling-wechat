@@ -10,6 +10,7 @@ namespace console\base;
 
 
 use common\components\swoole\task\TaskService;
+use common\components\Wechat;
 
 /**
  * Class Application
@@ -17,6 +18,7 @@ use common\components\swoole\task\TaskService;
  *
  * @property TaskService $emailTask
  * @property TaskService $wechatMessageTask
+ * @property Wechat $reminder 备忘录小程序
  *
  */
 class Application extends \yii\console\Application

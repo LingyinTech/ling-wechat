@@ -11,7 +11,8 @@
     "mdmsoft/yii2-admin": "~2.0",
     "yiisoft/yii2-swiftmailer": "^2.1",
     "kucha/ueditor": "^1.21",
-    "upyun/sdk": "^3.3"
+    "upyun/sdk": "^3.3",
+    "lingsoft/profile": "^0.1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.0",

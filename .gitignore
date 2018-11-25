@@ -12,3 +12,5 @@ backend/config/web.test.php
 frontend/config/web.prod.php
 frontend/config/web.test.php
 backend/htdocs/assets/
+console/config/console.prod.php
+console/config/console.test.php

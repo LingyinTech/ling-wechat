@@ -7,6 +7,7 @@
  */
 
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 ?>
 
 <div class="row">
@@ -18,20 +19,22 @@ use yii\bootstrap\ActiveForm;
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table no-margin">
+                    <table class="table no-margin param-data">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Code</th>
                             <th>名称</th>
+                            <th>是否有效</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($list as $item): ?>
-                            <tr>
-                                <td><?=$item['id']?></td>
-                                <td><?=$item['code']?></td>
-                                <td><?=$item['name']?></td>
+                            <tr class="">
+                                <td data-name="id" data-value="<?=$item['id']?>"><?=$item['id']?></td>
+                                <td data-name="code" data-value="<?=$item['code']?>"><?=$item['code']?></td>
+                                <td data-name="name" data-value="<?=$item['name']?>"><?=$item['name']?></td>
+                                <td data-name="status" data-value="<?=$item['status']?>"><?=$item['status'] ? '有效':'无效';?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -45,7 +48,7 @@ use yii\bootstrap\ActiveForm;
     <div class="col-md-5">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">添加付款方式</h3>
+                <h3 class="box-title">付款方式</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -84,7 +87,7 @@ use yii\bootstrap\ActiveForm;
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-default">重置</button>
+                    <button type="reset" class="btn btn-default">重置</button>
                     <button type="submit" class="btn btn-info pull-right">提交</button>
                 </div>
                 <!-- /.box-footer -->
@@ -92,3 +95,8 @@ use yii\bootstrap\ActiveForm;
         </div>
     </div>
 </div>
+
+<?php
+$this->registerJsFile(Url::to('@web/static/js/layer-3.1.1/dist/layer.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
+$this->registerJsFile(Url::to('@web/static/orderFlow/js/param.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
+?>

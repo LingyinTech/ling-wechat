@@ -29,12 +29,13 @@ class OrderInfo extends ActiveRecord
      * 默认查询未删除订单
      *
      * @param array $params
+     * @param array | string $fields
      * @return array|false
      */
-    public function getList($params = [])
+    public function getList($params = [], $fields = '*')
     {
         !isset($params['is_delete']) && $params['is_delete'] = 0;
-        return parent::getList($params);
+        return parent::getList($params, $fields);
     }
 
     public function saveOrder()

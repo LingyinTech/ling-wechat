@@ -42,15 +42,15 @@ return [
             ]
         ],
         'wechat' => [
-            'appId' => 'wx2b8adaf93335685a',
-            'secret' => 'ad9ef0b8cdc0cabcc7214b0f7b771fb4',
-            'token' => 'lingyin99',
+            'appId' => 'xxxx',
+            'secret' => 'xxxx',
+            'token' => 'xxxx',
             'aesKey' => '',
         ],
         'miniWechat' => [
             'type' => 'miniProgram',
-            'appId' => 'wxe4f5e0a70d253f50',
-            'secret' => '349c7650bf3550441db8be632ecabcf4',
+            'appId' => 'xxx',
+            'secret' => 'xxx',
         ],
         'imageUpload' => [
             'serviceName' => 'image-lingyin99',

@@ -18,7 +18,7 @@ use yii\bootstrap\ActiveForm;
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table no-margin">
+                    <table class="table no-margin param-data">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -84,7 +84,7 @@ use yii\bootstrap\ActiveForm;
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-default">重置</button>
+                    <button type="reset" class="btn btn-default">重置</button>
                     <button type="submit" class="btn btn-info pull-right">提交</button>
                 </div>
                 <!-- /.box-footer -->

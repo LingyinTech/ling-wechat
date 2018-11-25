@@ -14,7 +14,6 @@ use yii\helpers\Url;
     <link rel="stylesheet" href="<?= Url::to('@web/static/orderFlow/css/index.css') ?>">
     <link rel="stylesheet" href="<?= Url::to('@web/static/orderFlow/css/common.css') ?>">
     <link rel="stylesheet" href="<?= Url::to('@web/static/orderFlow/css/city-picker.css') ?>" type="text/css">
-    <link href="<?= Url::to('@web/static/orderFlow/css/WdatePicker.css') ?>" rel="stylesheet" type="text/css">
 
     <section class="create" style="background: rgb(232, 236, 245); margin-bottom: 0px; width: 100%;">
         <div class="order-shadow" style="">
@@ -60,16 +59,16 @@ use yii\helpers\Url;
                         <?= $form->field($model, 'order_name')->input('text', ['maxlength' => '128']) ?>
                     </td>
                     <td colspan="5" style="border-left: none;text-align: left;">
-                        <?php if(!empty($modelForm->barCode)):?>
-                        <img src="data:image/png;base64,<?=$modelForm->barCode?>">
-                        <?php endif;?>
+                        <?php if (!empty($modelForm->barCode)): ?>
+                            <img src="data:image/png;base64,<?= $modelForm->barCode ?>">
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="tdColor">归属</td>
                     <td colspan="3">
                         <?= $form->field($model, 'user_id')->input('text', ['style' => 'display:none;']) ?>
-                        <?= $form->field($modelForm, 'real_name')->input('text', ['maxlength' => '30']) ?>
+                        <?= $form->field($modelForm, 'real_name')->input('text', ['maxlength' => '30', 'readonly' => 'readonly']) ?>
                     </td>
                     <td colspan="2" class="tdColor">金额</td>
                     <td colspan="2">
@@ -78,19 +77,19 @@ use yii\helpers\Url;
 
                     <td colspan="2" class="tdColor">订单类型</td>
                     <td colspan="2">
-                        <?= $form->field($model, 'order_type')->dropDownList(['normal' => '打样', 'sale' => '新订单', 'sample' => '加定']) ?>
+                        <?= $form->field($model, 'order_type')->dropDownList($orderTypeList) ?>
                     </td>
 
                     <td colspan="2" class="tdColor">付款方式</td>
                     <td colspan="3">
-                        <?= $form->field($model, 'pay_method')->dropDownList(['normal' => '微信转账', 'sale' => '对公账', 'sample' => '天猫下单']) ?>
+                        <?= $form->field($model, 'pay_method')->dropDownList($payMethodList) ?>
                     </td>
 
                 </tr>
 
                 <tr>
                     <td colspan="2" class="tdColor">订单编号</td>
-                    <td colspan="3"><?= $form->field($model, 'order_sn')->input('text', ['maxlength' => '16', 'readonly' => 'readonly']) ?></td>
+                    <td colspan="3"><?= $form->field($model, 'order_sn')->input('text', ['maxlength' => '16']) ?></td>
                     <td colspan="2" class="tdColor">下单时间</td>
                     <td colspan="2"><?= $form->field($model, 'order_time')->input('text', ['readonly' => 'readonly']) ?></td>
                     <td colspan="2" class="tdColor">安排时间</td>
@@ -112,7 +111,9 @@ use yii\helpers\Url;
                     </td>
 
                     <td colspan="2" class="tdColor">类别</td>
-                    <td colspan="2"><?= $form->field($model, 'invoice_type')->input('text', ['maxlength' => '16']) ?></td>
+                    <td colspan="2">
+                        <?= $form->field($model, 'invoice_type')->dropDownList($invoiceTypeList) ?>
+                    </td>
 
                     <td colspan="2" class="tdColor">数量</td>
                     <td colspan="2"><?= $form->field($model, 'invoice_num')->input('text', ['maxlength' => '16']) ?></td>
@@ -203,7 +204,7 @@ use yii\helpers\Url;
                     </td>
                 </tr>
 
-                <?php if(empty($modelForm->skuList)):?>
+                <?php if (empty($modelForm->skuList)): ?>
                     <tr class="skuTr" id="sku_0">
                         <td colspan="2" class="delete_kuanshi">
                             <div class="namePosition">
@@ -224,7 +225,9 @@ use yii\helpers\Url;
                         <td colspan="4">
                             <div class="namePosition">
                                 <div class="ks">
-                                    <textarea class="cor_red" maxlength="30" style="width:220px;height:72px;text-align:left;" name="skuList[0][goods_remark]" placeholder="备注信息"></textarea>
+                                    <textarea class="cor_red" maxlength="30"
+                                              style="width:220px;height:72px;text-align:left;"
+                                              name="skuList[0][goods_remark]" placeholder="备注信息"></textarea>
                                 </div>
                             </div>
                         </td>
@@ -243,60 +246,67 @@ use yii\helpers\Url;
                             </div>
                         </td>
                     </tr>
-                <?php else:?>
-                    <?php foreach ($modelForm->skuList as $key => $info):?>
-                    <tr class="skuTr" id="sku_<?=$key;?>">
-                        <td colspan="2" class="delete_kuanshi">
-                            <div class="namePosition">
-                                <input type="hidden" name="skuList[<?=$key;?>][goods_id]" class="goods_id" value="<?=$info['goods_id']?>">
-                                <p class="goods_name"><?=$info['name']?></p>
-                            </div>
-                            <!-- 删除款式 -->
-                            <b class="xd_zj jh del_kuanshi_btn" style="opacity:0;line-height:80px;"
-                               onclick="window.order.shanchu(this)">
-                                <div class="shanchu-tishi">删除</div>
-                            </b>
-                        </td>
-                        <td colspan="2">
-                            <select name="skuList[<?=$key;?>][color]" class="color">
-                                <?php foreach ($info['color_list'] as $item):?>
-                                    <option value="<?=$item['attr_type']?>_<?=$item['id']?>_<?=$item['attr_value']?>"><?=$item['attr_value']?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </td>
-                        <td colspan="4">
-                            <div class="namePosition">
-                                <div class="ks">
-                                    <textarea class="cor_red" maxlength="30" style="width:220px;height:72px;text-align:left;" name="skuList[<?=$key;?>][goods_remark]" placeholder="备注信息"></textarea>
+                <?php else: ?>
+                    <?php foreach ($modelForm->skuList as $key => $info): ?>
+                        <tr class="skuTr" id="sku_<?= $key; ?>">
+                            <td colspan="2" class="delete_kuanshi">
+                                <div class="namePosition">
+                                    <input type="hidden" name="skuList[<?= $key; ?>][goods_id]" class="goods_id"
+                                           value="<?= $info['goods_id'] ?>">
+                                    <p class="goods_name"><?= $info['name'] ?></p>
                                 </div>
-                            </div>
-                        </td>
-                        <td colspan="10">
-                            <div class="namePosition">
-                                <table class="sizeTab">
-                                    <tbody>
-                                    <tr class="size_name">
-                                        <?php foreach ($info['size_list'] as $item):?>
-                                            <td><?=$item['attr_value']?></td>
-                                        <?php endforeach;?>
-                                    </tr>
-                                    <tr class="size_count">
-                                        <?php foreach ($info['size_list'] as $item):?>
-                                            <?php $sizeKey = "{$item['attr_type']}_{$item['id']}_{$item['attr_value']}";?>
-                                            <td><input type='text' maxlength='6' name="skuList[<?=$key?>][<?=$sizeKey?>]" value="<?=$info[$sizeKey]?>"></td>
-                                        <?php endforeach;?>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="sizeCom">
-                                    <span>小计</span>
-                                    <span class="total"></span>
+                                <!-- 删除款式 -->
+                                <b class="xd_zj jh del_kuanshi_btn" style="opacity:0;line-height:80px;"
+                                   onclick="window.order.shanchu(this)">
+                                    <div class="shanchu-tishi">删除</div>
+                                </b>
+                            </td>
+                            <td colspan="2">
+                                <select name="skuList[<?= $key; ?>][color]" class="color">
+                                    <?php foreach ($info['color_list'] as $item): ?>
+                                        <option
+                                            value="<?= $item['attr_type'] ?>_<?= $item['id'] ?>_<?= $item['attr_value'] ?>"><?= $item['attr_value'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td colspan="4">
+                                <div class="namePosition">
+                                    <div class="ks">
+                                        <textarea class="cor_red" maxlength="30"
+                                                  style="width:220px;height:72px;text-align:left;"
+                                                  name="skuList[<?= $key; ?>][goods_remark]"
+                                                  placeholder="备注信息"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach;?>
-                <?php endif;?>
+                            </td>
+                            <td colspan="10">
+                                <div class="namePosition">
+                                    <table class="sizeTab">
+                                        <tbody>
+                                        <tr class="size_name">
+                                            <?php foreach ($info['size_list'] as $item): ?>
+                                                <td><?= $item['attr_value'] ?></td>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                        <tr class="size_count">
+                                            <?php foreach ($info['size_list'] as $item): ?>
+                                                <?php $sizeKey = "{$item['attr_type']}_{$item['id']}_{$item['attr_value']}"; ?>
+                                                <td><input type='text' maxlength='6'
+                                                           name="skuList[<?= $key ?>][<?= $sizeKey ?>]"
+                                                           value="<?= $info[$sizeKey] ?>"></td>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="sizeCom">
+                                        <span>小计</span>
+                                        <span class="total"></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
                 <tr>
                     <td colspan="18" class="tdColor">
@@ -320,7 +330,7 @@ use yii\helpers\Url;
                     <td colspan="18">
                         <div style="width: auto; height: auto;">
                             <?php echo \kucha\ueditor\UEditor::widget(['name' => 'thumb', 'clientOptions' => [
-                                'serverUrl'=> '/upload/upload',
+                                'serverUrl' => '/upload/upload',
                                 'elementPathEnabled' => false,
                                 'wordCount' => false,
                                 'initialFrameHeight' => '200',
@@ -359,8 +369,8 @@ use yii\helpers\Url;
 
         <div class="text-center" style="margin:30px 0;">
 
-            <?php if($model->order_state <= 0):?>
-		        <span class="tankBtn">
+            <?php if ($model->order_state <= 0): ?>
+                <span class="tankBtn">
 		        	<input type="button" class="btn btn-second" style="font-size:16px;height: 40px;" value="存稿箱"
                            onclick="window.order.save(0)" id="submit_draft">
 		        	<div class="order-btn-tishi" id="caogao-btn-tishi" style="display: none;">
@@ -377,7 +387,7 @@ use yii\helpers\Url;
 		        		<span>正在下单...</span>
 		        	</div>
 		        </span>
-            <?php endif;?>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -398,7 +408,6 @@ use yii\helpers\Url;
 $this->registerJsFile(Url::to('@web/static/js/layer-3.1.1/dist/layer.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
 $this->registerJsFile(Url::to('@web/static/orderFlow/js/index.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
 $this->registerJsFile(Url::to('@web/static/orderFlow/js/common.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
-$this->registerJsFile(Url::to('@web/static/orderFlow/js/WdatePicker.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
 $this->registerJsFile(Url::to('@web/static/orderFlow/js/city-picker.data.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
 $this->registerJsFile(Url::to('@web/static/orderFlow/js/city-picker.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
 $this->registerJsFile(Url::to('@web/static/orderFlow/js/order.js'), ['depends' => 'dmstr\web\AdminLteAsset']);
@@ -412,12 +421,12 @@ $this->registerJsFile(Url::to('@web/static/orderFlow/js/order.js'), ['depends' =
             $("#city-picker1").citypicker();
             $("#city-picker2").citypicker();
 
-            $("table").delegate(".goods_name", "click", function(){//款式点击事件
+            $("table").delegate(".goods_name", "click", function () {//款式点击事件
                 var index = $(this).parents("tbody").find(".skuTr").index($(this).parents(".skuTr"));
                 var url = "<?=Url::to(['goods/pop']);?>";
                 layer.open({
                     type: 2,
-                    content: url + '?index='+index,
+                    content: url + '?index=' + index,
                     title: false,
                     area: ['700px', '500px']
                 });
@@ -425,17 +434,17 @@ $this->registerJsFile(Url::to('@web/static/orderFlow/js/order.js'), ['depends' =
 
             //添加款式信息
             var length = $(".skuTr").length;
-            $("#add-kuanshi-tr").click(function(){
+            $("#add-kuanshi-tr").click(function () {
                 var html = $(".skuTr:first").html();
                 var index = $(".skuTr:first").attr("id").substring(4);
-                var skuList = 'skuList['+parseInt(index)+']';
-                var newHtml = html.split(skuList).join('skuList['+length+']');
-                $(".skuTr:last").after("<tr class='skuTr' id='sku_"+length+"'>"+newHtml+"</tr>");
+                var skuList = 'skuList[' + parseInt(index) + ']';
+                var newHtml = html.split(skuList).join('skuList[' + length + ']');
+                $(".skuTr:last").after("<tr class='skuTr' id='sku_" + length + "'>" + newHtml + "</tr>");
                 $(".total:last").html('');
-                $(".jh").css("opacity","1").eq(0).css("opacity","1");
+                $(".jh").css("opacity", "1").eq(0).css("opacity", "1");
                 var i = $(".skuTr:last").parents(".newTab").find(".skuTr").index($(".skuTr:last"));
                 window.order.clearSize(i);
-                $(".skuTr:eq("+i+") .size").parent("td").removeClass("div_red");
+                $(".skuTr:eq(" + i + ") .size").parent("td").removeClass("div_red");
                 length++;
             });
         });

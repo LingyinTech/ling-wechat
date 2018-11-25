@@ -10,6 +10,11 @@ return [
     'components' => [
         'emailTask' => [
 
-        ]
+        ],
+        'reminder' => [
+            'type' => 'miniProgram',
+            'appId' => 'xxxxx',
+            'secret' => 'xxxxx',
+        ],
     ]
 ];

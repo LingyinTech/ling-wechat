@@ -10,7 +10,10 @@ namespace backend\modules\orderFlow\controllers;
 
 
 use backend\modules\orderFlow\models\form\OrderInfoForm;
+use backend\modules\orderFlow\models\InvoiceType;
 use backend\modules\orderFlow\models\OrderInfo;
+use backend\modules\orderFlow\models\OrderType;
+use backend\modules\orderFlow\models\PayMethod;
 use common\base\Controller;
 
 class OrderController extends Controller
@@ -43,14 +46,12 @@ class OrderController extends Controller
         empty($model) && $model = new OrderInfo();
 
         if (app()->request->isPost) {
-
             if (($result = $model->saveOrder()) !== true) {
                 if (is_string($result)) {
                     return $this->fail('保存失败' . $result);
                 }
                 return $this->format(['status' => 1, 'msg' => '保存失败', 'data' => $result]);
             }
-
             return $this->success('保存成功');
         }
 
@@ -66,6 +67,38 @@ class OrderController extends Controller
         return $this->render('create', [
             'model' => $model,
             'modelForm' => $modelForm,
+            'invoiceTypeList' => (new InvoiceType())->getCache(),
+            'orderTypeList' => (new OrderType())->getCache(),
+            'payMethodList' => (new PayMethod())->getCache(),
+            '_csrf' => $csrf,
+        ]);
+    }
+
+    public function actionPrint()
+    {
+        $id = app()->request->get('id');
+        if (!empty($id)) {
+            $model = OrderInfo::findOne($id);
+        }
+        if (empty($model)) {
+            $this->render('error');
+        }
+
+        $modelForm = new OrderInfoForm();
+        $csrf = app()->request->getCsrfToken();
+
+        if (!empty($model)) {
+            $modelForm->loadData($model);
+            $model->order_time = $modelForm->order_time;
+            $model->plan_time = $modelForm->plan_time;
+        }
+
+        return $this->renderPartial('create', [
+            'model' => $model,
+            'modelForm' => $modelForm,
+            'invoiceTypeList' => (new InvoiceType())->getCache(),
+            'orderTypeList' => (new OrderType())->getCache(),
+            'payMethodList' => (new PayMethod())->getCache(),
             '_csrf' => $csrf,
         ]);
     }
