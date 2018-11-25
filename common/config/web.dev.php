@@ -56,7 +56,7 @@ return [
             'serviceName' => 'image-lingyin99',
             'operatorName' => 'actors315',
             'operatorPwd' => 'Lingyin99',
-            'apiKey' => 'NfO/8EZtfT/WxK8iTLr2QYNjxpY=',
+            'apiKey' => 'xxxxxxx',
             'preFixPath' => 'lingyin-wechat',
             'baseUrl' => 'https://image-lingyin99.test.upcdn.net'
         ]
