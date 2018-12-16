@@ -8,7 +8,7 @@ namespace backend\modules\orderFlow;
  * Class Module
  * @package backend\modules\wechat
  */
-class Module extends \yii\base\Module
+class Module extends \common\base\Module
 {
     public $controllerNamespace = 'backend\modules\orderFlow\controllers';
 

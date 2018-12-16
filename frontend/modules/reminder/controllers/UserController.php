@@ -6,9 +6,8 @@
  * Time: 12:24
  */
 
-namespace frontend\modules\helloBaby\controllers;
+namespace frontend\modules\reminder\controllers;
 
-use common\modules\helloBaby\models\UserInfo;
 use common\base\api\Controller;
 use Yii;
 
@@ -17,13 +16,19 @@ class UserController extends Controller
     public function actionLogin()
     {
         $code = app()->request->get('code');
-        $result = app()->miniWechat->getInstance()->auth->session($code);
+        $result = app()->reminder->getInstance()->auth->session($code);
         if (empty($result['openid'])) {
             return $this->fail($result['errmsg']);
         }
 
-        list($result['api_token'],$result['last_event_time']) = (new UserInfo())->checkLogin($result['openid']);
-
         return $this->format($result);
+    }
+
+    public function actionFormId()
+    {
+        $userId = app()->request->get('user_id');
+        $formId = app()->request->get('form_id');
+
+        return $this->success('success');
     }
 }

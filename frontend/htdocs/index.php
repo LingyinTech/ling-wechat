@@ -20,7 +20,7 @@ $config = yii\helpers\ArrayHelper::merge(
 (new \common\base\Application($config))->run();
 
 /**
- * @return \common\base\Application $app
+ * @return \common\base\Application  $app
  */
 function app(){
     return Yii::$app;

@@ -16,6 +16,8 @@ class Module extends \yii\base\Module
 
     public $domain = null;
 
+    public $autoRedirect = false;
+
     public function init()
     {
         parent::init();

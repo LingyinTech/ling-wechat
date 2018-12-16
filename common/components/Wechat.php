@@ -33,7 +33,7 @@ class Wechat extends Component
     public function init()
     {
         if (empty($this->logFile)) {
-            $this->logFile = Yii::$app->getRuntimePath() . '/logs/wechat.log';
+            $this->logFile = Yii::$app->getRuntimePath() . '/logs/wechat/'.date('Y-m-d').'.log';
         }
     }
 

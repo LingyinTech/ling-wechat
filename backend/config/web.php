@@ -18,15 +18,17 @@ $config = [
         'admin' => [
             'class' => 'mdm\admin\Module',
         ],
-        'order-flow' =>[
+        'order-flow' => [
             'basePath' => '@backend/modules/orderFlow',
             'class' => 'backend\modules\orderFlow\Module',
+            'domain' => 'order-flow.admin.lingyin99.com',
+            'autoRedirect' => true,
         ],
         'wechat' => [
             'basePath' => '@backend/modules/wechat',
             'class' => 'backend\modules\wechat\Module',
         ],
-        'wechat-work' =>[
+        'wechat-work' => [
             'basePath' => '@backend/modules/wechatWork',
             'class' => 'backend\modules\wechatWork\Module',
         ]
@@ -55,10 +57,21 @@ $config = [
             'schemaCache' => 'cache',
         ],
         'user' => [
-            'identityClass' => 'backend\models\User',
+            'identityClass' => \backend\models\User::class,
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => [
+                'name' => '_identity-backend',
+                'domain' => '.admin.lingyin99.com',
+                'httpOnly' => true
+            ],
             'loginUrl' => ['user/login']
+        ],
+        'session' => [
+            'cookieParams' => [
+                'path' => '/',
+                'domain' => '.admin.lingyin99.com',
+            ],
+            'name' => 'lingyin-backend',
         ],
         'authManager' => [
             'db' => 'baseDb',
