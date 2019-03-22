@@ -8,7 +8,6 @@
 
 namespace common\base;
 
-use Yii;
 use yii\web\ForbiddenHttpException;
 
 class Module extends \yii\base\Module
@@ -22,8 +21,14 @@ class Module extends \yii\base\Module
     {
         parent::init();
         if ($this->domain !== null) {
-            $hostInfo = Yii::$app->request->getHostInfo();
-            if (false === strpos($hostInfo, $this->domain)) {
+            $hostInfo = app()->request->getHostInfo();
+            $hostDomain = str_replace(['https://', 'http://'], '', $hostInfo);
+            if (0 !== strpos($hostDomain, $this->domain)) {
+                if($this->autoRedirect) {
+                    $domain = str_replace($hostDomain,$this->domain,app()->request->getAbsoluteUrl());
+                    app()->response->redirect($domain);
+                    app()->end();
+                }
                 throw new ForbiddenHttpException('Access Denied');
             }
         }

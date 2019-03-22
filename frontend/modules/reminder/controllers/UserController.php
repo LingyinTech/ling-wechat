@@ -9,7 +9,6 @@
 namespace frontend\modules\reminder\controllers;
 
 use common\base\api\Controller;
-use Yii;
 
 class UserController extends Controller
 {

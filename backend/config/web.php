@@ -21,7 +21,7 @@ $config = [
         'order-flow' => [
             'basePath' => '@backend/modules/orderFlow',
             'class' => 'backend\modules\orderFlow\Module',
-            'domain' => 'order-flow.admin.lingyin99.com',
+            'domain' => 'order-flow.' . BASE_DOMAIN,
             'autoRedirect' => true,
         ],
         'wechat' => [
@@ -61,7 +61,7 @@ $config = [
             'enableAutoLogin' => true,
             'identityCookie' => [
                 'name' => '_identity-backend',
-                'domain' => '.admin.lingyin99.com',
+                'domain' => '.' . BASE_DOMAIN,
                 'httpOnly' => true
             ],
             'loginUrl' => ['user/login']
@@ -69,7 +69,7 @@ $config = [
         'session' => [
             'cookieParams' => [
                 'path' => '/',
-                'domain' => '.admin.lingyin99.com',
+                'domain' => '.' . BASE_DOMAIN,
             ],
             'name' => 'lingyin-backend',
         ],

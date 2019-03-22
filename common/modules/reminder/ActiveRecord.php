@@ -6,7 +6,7 @@
  * Time: 15:46
  */
 
-namespace common\base\reminder;
+namespace common\modules\reminder;
 
 use common\helpers\Str;
 use Yii;
@@ -21,7 +21,7 @@ class ActiveRecord extends \common\base\ActiveRecord
 
     public static function tableName()
     {
-        return 'reminder_' . Str::revertUcwords(
+        return 'reminder_' . Str::revertUcWords(
             substr(strrchr(get_called_class(), '\\'), 1),
             '_'
         );

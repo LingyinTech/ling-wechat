@@ -15,7 +15,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
 
     public static function tableName()
     {
-        return Str::revertUcwords(
+        return Str::revertUcWords(
             substr(strrchr(get_called_class(), '\\'), 1),
             '_'
         );

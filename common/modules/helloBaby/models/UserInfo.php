@@ -8,7 +8,7 @@
 
 namespace common\modules\helloBaby\models;
 
-use common\base\helloBaby\ActiveRecord;
+use common\modules\helloBaby\ActiveRecord;
 use Yii;
 use yii\db\Exception;
 

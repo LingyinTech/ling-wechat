@@ -12,4 +12,8 @@ namespace common\components;
 class UrlRule extends \yii\web\UrlRule
 {
 
+    public function parseRequest($manager, $request) {
+        return parent::parseRequest($manager,$request);
+    }
+
 }

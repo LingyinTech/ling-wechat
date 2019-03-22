@@ -6,16 +6,14 @@
  * Time: 15:46
  */
 
-namespace common\base\digitalCoin;
-
-use Yii;
+namespace common\modules\helloBaby;
 
 class ActiveRecord extends \common\base\ActiveRecord
 {
 
     public static function getDb()
     {
-        return Yii::$app->digitalCoinDb;
+        return app()->helloBabyDb;
     }
 
 }

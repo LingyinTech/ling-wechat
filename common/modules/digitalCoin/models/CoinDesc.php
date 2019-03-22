@@ -9,7 +9,7 @@
 namespace common\modules\digitalCoin\models;
 
 
-use common\base\digitalCoin\ActiveRecord;
+use common\modules\digitalCoin\ActiveRecord;
 
 class CoinDesc extends ActiveRecord
 {

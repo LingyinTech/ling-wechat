@@ -8,6 +8,9 @@
 
 $config = [
     'components' => [
+        'urlManager' => [
+            'class' => \common\components\UrlManager::class,
+        ],
         'request' => [
             'cookieValidationKey' => '9nfRpkQ9RZYk8TzAVMsVeThqLePM9HdR',
         ],
