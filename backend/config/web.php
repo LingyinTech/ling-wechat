@@ -86,6 +86,9 @@ $config = [
             ],
         ],
         'urlManager' => [
+            'subDomains' => [
+                '<_m:(order-flow|wechat|wechat-work)>.' . BASE_DOMAIN => '<_m>'
+            ],
             'rules' => [
                 '<module:(order-flow)>/<controller:[\w-]+>/<action:[\w-]+>/state_<order_state:([\d])+><nouse:(.*)>' => '<module>/<controller>/<action>',
                 '<module:(admin|order-flow|wechat|wechat-work)>/<controller:[\w-]+>/<action:[\w-]+><nouse:(.*)>' => '<module>/<controller>/<action>',
